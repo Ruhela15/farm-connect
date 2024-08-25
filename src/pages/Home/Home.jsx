@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header'
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/Footer/footer';
 import AppDownload from '../../components/AppDownload/AppDownload';
+import FoodDisply from '../../components/FoodDisplay/FoodDisply'
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         <Navbar/>
         <Header />
         {/* <Explore category={category} setCategory={setCategory} /> */}
+        <FoodDisply category ={category}  />
         <AppDownload/>
         <Footer/>
     </div>

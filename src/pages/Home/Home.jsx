@@ -1,6 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Header from '../../components/Header/Header'
+import Navbar from '../../components/navbar/Navbar';
 
 
 const Home = () => {
@@ -8,7 +9,7 @@ const Home = () => {
 
   return (
     <div>
-        <Navbar />
+        <Navbar/>
         <Header />
         {/* <Explore category={category} setCategory={setCategory} /> */}
     </div>

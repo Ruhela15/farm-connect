@@ -5,8 +5,8 @@ const Header = () => {
   return (
     <div className="header">
         <div className="header-contents">
-            <h2>Order Your Daily Veggies from here.</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis rerum accusamus beatae mollitia doloribus sunt commodi minus magnam tenetur aspernatur aliquam quia soluta nobis, dolore est, hic dicta ipsa ipsam labore officia, unde culpa assumenda quae architecto. Reiciendis neque earum sequi atque aliquid eos vitae magnam, alias maiores voluptatem odit.</p>
+            <h2>Nourish Your Body with Nature's Best!</h2>
+            <p>Experience the best of nature with our crisp, handpicked vegetables. Grown sustainably, our produce brings you the perfect blend of flavor and nutrition. Shop now to elevate your meals with farm-fresh goodness!</p>
             <button>View Menu</button>
         </div>
     </div>

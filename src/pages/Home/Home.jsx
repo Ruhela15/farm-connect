@@ -5,12 +5,12 @@ import Navbar from '../../components/navbar/Navbar'
 
 
 const Home = () => {
-  const [category,setCategory]=useState("All");
+  // const [category,setCategory]=useState("All");
   return (
     <div>
         <Navbar/>
         <Header/>
-        <explore category={category} setCategory={setCategory}/>
+        {/* <explore category={category} setCategory={setCategory}/> */}
     </div>
   )
 }

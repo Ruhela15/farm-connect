@@ -3,7 +3,7 @@
     margin-top: 100px;
     font-size: max(3vw,20px);
     text-align: center;
-    font-weight: center;
+    font-weight: 500;
 }
 .app-download-platforms{
     display: flex;

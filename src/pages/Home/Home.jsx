@@ -1,19 +1,23 @@
 import React from 'react'
 import './Home.css'
 import Header from '../../components/Header/Header'
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/Footer/footer';
+import AppDownload from '../../components/AppDownload/AppDownload';
 
 
 const Home = () => {
-  const [category,setCategory]=useState("All");
+//   const [category, setCategory] = useState("All");
+
   return (
     <div>
         <Navbar/>
-        <Header/>
-        <explore category={category} setCategory={setCategory}/>
+        <Header />
+        {/* <Explore category={category} setCategory={setCategory} /> */}
         <AppDownload/>
+        <Footer/>
     </div>
-  )
+  );
 }
 
 export default Home

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Header from '../../components/Header/Header'
-import Navbar from '../../components/navbar/Navbar'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 const Home = () => {

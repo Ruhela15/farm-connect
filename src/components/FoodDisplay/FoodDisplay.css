@@ -1,7 +1,7 @@
-.food-dispaly{
+.food-display{
     margin-top: 30px;
 }
-.food-dispaly h2{
+.food-display h2{
     font-size: max(2vw , 24px);
     font-weight: 600;
 }

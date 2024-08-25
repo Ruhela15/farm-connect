@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Header from '../../components/Header/Header'
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../components/navbar/Navbar'
 import FoodDisply from '../../components/FoodDisplay/FoodDisply'
 
 
@@ -13,7 +13,7 @@ const Home = () => {
         <Navbar/>
         <Header />
         {/* <Explore category={category} setCategory={setCategory} /> */}
-        <FoodDisply category ={category}  />
+        <FoodDisply category ={category}/>
     </div>
   );
 }

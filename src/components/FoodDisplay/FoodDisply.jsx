@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './FoodDisply.css'
+import './FoodDisplay.css'
 import { Storecontext } from '../content/Storecontext'
 import Fooditems from '../fooditems/fooditems'
 const FoodDisply = ({ category }) => {
@@ -14,7 +14,6 @@ const FoodDisply = ({ category }) => {
                     if (category === "All" || category === item.category) {
                         return <Fooditems key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} />
                     }
-
                 })}
             </div>
         </div>

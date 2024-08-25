@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import explore from './components/Explore Menu/exploreMenu'
+import React from 'react'
+import Home from './pages/Home/Home'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <explore/>
+    <div className="app">
+      <Home/>
+    </div>
   )
 }
 

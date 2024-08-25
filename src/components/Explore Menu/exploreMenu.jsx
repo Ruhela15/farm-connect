@@ -1,10 +1,10 @@
 import React from 'react'
 import './exploreMenu.css'
-import { menu_list } from '../.../assets/assets'
+import { menu_list } from '../../assets/assets'
 
-const explore=({category,setCategory})=>{
+const Explore=({category,setCategory})=>{
     return(
-        <div classname='explore-menu' id='explore-menu'>
+        <div className='explore-menu' id='explore-menu'>
             <h1>Explore Our Menu</h1>
             <p className='explore-menu-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam saepe temporibus, perferendis suscipit molestiae explicabo in impedit iste ducimus? Quibusdam.</p>
             <div className="explore-menu-list">
@@ -14,8 +14,7 @@ const explore=({category,setCategory})=>{
                         onClick={()=>setCategory(prev=>prev===item.menu_name?"All":item.menu_name)}
                         key={index}
                         className=''>
-                          <img className={category===item.menu_name?"active":""} src="item.menu_image" alt="" />
-                          <p>{item.menu_name}</p>
+                          <img className={category===item.menu_name?"active":""} src = {item.menu.image} alt= {item.menu_name} />
                         </div>
                     )
                 })}
@@ -25,4 +24,4 @@ const explore=({category,setCategory})=>{
 
     )
 }
-export default explore
+export default Explore

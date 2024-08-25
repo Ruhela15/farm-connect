@@ -11,6 +11,7 @@ const Home = () => {
         <Navbar/>
         <Header/>
         <explore category={category} setCategory={setCategory}/>
+        <AppDownload/>
     </div>
   )
 }

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './Home.css';
-import Header from '../../components/Header/Header';
-import Navbar from '../../components/Navbar/Navbar';
-import Explore from '../../components/Explore Menu/exploreMenu';
+import React from 'react'
+import './Home.css'
+import Header from '../../components/Header/Header'
+import Navbar from '../../components/navbar/Navbar'
+
 
 const Home = () => {
 //   const [category, setCategory] = useState("All");

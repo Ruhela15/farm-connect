@@ -7,11 +7,13 @@
 .explore-menu h1 {
     color: #262626;
     font-weight: 500;
+    font-size: 2rem; /* Adjust font size for better scaling */
 }
 
 .explore-menu-text {
     max-width: 60%;
     color: #808080;
+    font-size: 1rem; /* Set a base font size */
 }
 
 .explore-menu-list {
@@ -21,11 +23,12 @@
     gap: 30px;
     text-align: center;
     margin: 20px 0;
-    overflow-x: scroll;
+    overflow-x: auto; /* Changed from 'scroll' to 'auto' for better UX */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .explore-menu-list::-webkit-scrollbar {
-    display: none;
+    width: 0; /* Hide scrollbar in all browsers */
 }
 
 .menu-item img {
@@ -53,4 +56,39 @@
 .menu-item.active img {
     border: 4px solid tomato;
     padding: 2px;
+}
+
+@media (max-width: 1050px) {
+    .explore-menu-text {
+        max-width: 100%;
+        font-size: 0.875rem; /* Smaller font size for medium screens */
+    }
+}
+
+@media (max-width: 750px) {
+    .explore-menu {
+        gap: 15px;
+    }
+
+    .explore-menu h1 {
+        font-size: 1.5rem; /* Adjust heading size */
+    }
+
+    .explore-menu-text {
+        max-width: 100%;
+        font-size: 0.8125rem; /* Further reduced font size */
+    }
+
+    .explore-menu-list {
+        gap: 20px;
+    }
+
+    .menu-item img {
+        width: 15vw;
+        min-width: 60px;
+    }
+
+    .menu-item p {
+        font-size: 14px; /* Consistent font size for mobile */
+    }
 }

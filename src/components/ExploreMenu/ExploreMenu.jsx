@@ -12,27 +12,24 @@ const ExploreMenu = ({ category, setCategory }) => {
         ducimus? Quibusdam.
       </p>
       <div className="explore-menu-list">
-        {menu_list.map((item, index) => {
-          return (
-            <div
-              onClick={() =>
-                setCategory((prev) =>
-                  prev === item.menu_name ? "All" : item.menu_name
-                )
-              }
-              key={index}
-              className={`menu-item ${
-                category === item.menu_image ? "active" : ""
-              }`}
-            >
-              <img
-                className={category === item.menu_name ? "active" : ""}
-                src={item.menu_image}
-                alt={item.menu_name}
-              />
-            </div>
-          );
-        })}
+        {menu_list.map((item, index) => (
+          <div
+            key={index}
+            onClick={() =>
+              setCategory(prev => (prev === item.menu_name ? "All" : item.menu_name))
+            }
+            className={`menu-item ${
+              category === item.menu_name ? "active" : ""
+            }`}
+          >
+            <img
+              src={item.menu_image}
+              alt={item.menu_name}
+              className={`menu-item-img ${category === item.menu_name ? "active" : ""}`}
+            />
+            <p>{item.menu_name}</p>
+          </div>
+        ))}
       </div>
       <hr />
     </div>

@@ -6,11 +6,13 @@
     align-items: center;
     position: relative;
     z-index: 100;
+    transition: background-color 0.3s ease;
 }
 
 /* Logo */
 .navbar .logo {
     width: 150px;
+    transition: width 0.3s ease;
 }
 
 /* Navbar Menu */
@@ -20,7 +22,7 @@
     gap: 20px;
     color: #49557e;
     font-size: 18px;
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.3s ease-in-out, transform 0.3s ease;
 }
 
 /* Navbar Right */
@@ -28,6 +30,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
+    transition: gap 0.3s ease;
 }
 
 .navbar button {
@@ -38,20 +41,27 @@
     padding: 10px 30px;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 .navbar button:hover {
     background-color: #fff4f2;
+    transform: translateY(-2px); /* Adds a slight lift on hover */
 }
 
 .navbar .active {
     padding-bottom: 2px;
     border-bottom: 2px solid #49557e;
+    transition: border-bottom 0.3s ease;
 }
 
 .navbar li {
     cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar li:hover {
+    color: tomato; /* Changes color on hover */
 }
 
 .navbar-search-icon {
@@ -66,6 +76,17 @@
     border-radius: 5px;
     top: -8px;
     right: -8px;
+    animation: bounce 1s infinite;
+}
+
+/* Bounce Animation for the Notification Dot */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 /* Media Queries for Responsiveness */
@@ -124,24 +145,26 @@
         background-color: white;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;  /* Add spacing between menu items */
+        gap: 10px;
         width: 100%;
         max-height: 0;
         overflow: hidden;
-        padding: 10px; /* Add padding to the menu for better spacing */
+        padding: 10px;
+        transition: max-height 0.5s ease, transform 0.3s ease;
     }
 
     .navbar-menu.open {
-        max-height: 300px; /* Adjust according to your needs */
+        max-height: 300px;
+        transform: translateY(0);
     }
 
     .navbar-right {
-        gap: 20px; /* Adjusted gap for better spacing on mobile screens */
-        flex-direction: row; /* Ensure icons are displayed in a row */
+        gap: 20px;
+        flex-direction: row;
     }
 
     .navbar-right img {
-        width: 18px; /* Adjust icon size for mobile */
+        width: 18px;
     }
 
     .navbar-right button {
@@ -151,5 +174,11 @@
 
     .hamburger {
         display: flex;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .hamburger:hover {
+        transform: rotate(90deg);
     }
 }

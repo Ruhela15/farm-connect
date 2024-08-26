@@ -1,15 +1,61 @@
-.food-display{
+.food-display {
     margin-top: 30px;
+    position: relative;
 }
-.food-display h2{
-    font-size: max(2vw , 24px);
+
+.food-display h2 {
+    font-size: max(2vw, 24px);
     font-weight: 600;
+    animation: fadeIn 1s;
 }
-.food-display-list{
+
+.food-display-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill , minmax(240px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     margin-top: 30px;
     gap: 30px;
     row-gap: 50px;
+    animation: fadeIn 1s ease-in-out;
+}
 
+@media (max-width: 768px) {
+    .food-display-list {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+.food-display-list > div {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-display-list > div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.view-more-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: rgba(255, 99, 71, 0.8);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-more-button:hover {
+    background-color: rgba(255, 99, 71, 1);
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

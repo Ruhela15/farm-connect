@@ -2,18 +2,22 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .explore-menu h1 {
     color: #262626;
     font-weight: 500;
-    font-size: 2rem; /* Adjust font size for better scaling */
+    font-size: 2rem;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .explore-menu-text {
     max-width: 60%;
     color: #808080;
-    font-size: 1rem; /* Set a base font size */
+    font-size: 1rem;
+    animation: fadeIn 1.5s ease-in-out 0.5s forwards;
+    opacity: 0;
 }
 
 .explore-menu-list {
@@ -23,12 +27,13 @@
     gap: 30px;
     text-align: center;
     margin: 20px 0;
-    overflow-x: auto; /* Changed from 'scroll' to 'auto' for better UX */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .explore-menu-list::-webkit-scrollbar {
-    width: 0; /* Hide scrollbar in all browsers */
+    width: 0;
 }
 
 .menu-item img {
@@ -36,21 +41,15 @@
     min-width: 80px;
     cursor: pointer;
     border-radius: 50%;
-    transition: 0.2s;
+    transition: box-shadow 0.3s ease, padding 0.3s ease;
+    object-fit: cover;
+    padding: 2px;
 }
 
-.menu-item p {
-    margin-top: 10px;
-    color: #747474;
-    font-size: max(1.4vw, 16px);
-    cursor: pointer;
-}
-
-.explore-menu hr {
-    margin: 10px 0;
-    height: 2px;
-    background-color: #e2e2e2;
-    border: none;
+.menu-item img:hover {
+    padding: 0;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 50%; /* Ensure the shadow maintains the circular shape */
 }
 
 .menu-item.active img {
@@ -58,10 +57,48 @@
     padding: 2px;
 }
 
+.menu-item p {
+    margin-top: 10px;
+    color: #747474;
+    font-size: max(1.4vw, 16px);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.menu-item p:hover {
+    color: tomato;
+}
+
+.explore-menu hr {
+    margin: 10px 0;
+    height: 2px;
+    background-color: #e2e2e2;
+    border: none;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 @media (max-width: 1050px) {
     .explore-menu-text {
         max-width: 100%;
-        font-size: 0.875rem; /* Smaller font size for medium screens */
+        font-size: 0.875rem;
     }
 }
 
@@ -71,12 +108,12 @@
     }
 
     .explore-menu h1 {
-        font-size: 1.5rem; /* Adjust heading size */
+        font-size: 1.5rem;
     }
 
     .explore-menu-text {
         max-width: 100%;
-        font-size: 0.8125rem; /* Further reduced font size */
+        font-size: 0.8125rem;
     }
 
     .explore-menu-list {
@@ -89,6 +126,6 @@
     }
 
     .menu-item p {
-        font-size: 14px; /* Consistent font size for mobile */
+        font-size: 14px;
     }
 }

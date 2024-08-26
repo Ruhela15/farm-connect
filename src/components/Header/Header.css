@@ -18,20 +18,23 @@
 }
 
 .header-contents h2{
+    font-family: Outfit;
     font-weight: 500;
     color: white;
     font-size: max(4.5vw,22px);
 }
 
 .header-contents p{
+    font-family: Outfit;
     color: white;
-    font-size: 1vw;
+    font-size: 1.1vw;
 }
 
 .header-contents button{
     border: none;
     color: #747474;
     font-weight: 500;
+    font-family: Outfit;
     padding: 1vw 2.3vw;
     background-color: white;
     font-size: max(1vw,13px);

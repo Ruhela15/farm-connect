@@ -1,26 +1,36 @@
-.navbar{
+/* Navbar Container */
+.navbar {
     padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 100;
 }
-.navbar.logo{
+
+/* Logo */
+.navbar .logo {
     width: 150px;
 }
-.navbar-menu{
+
+/* Navbar Menu */
+.navbar-menu {
     display: flex;
     list-style: none;
     gap: 20px;
     color: #49557e;
     font-size: 18px;
+    transition: max-height 0.3s ease-in-out;
 }
 
-.navbar-right{
-    display:  flex;
+/* Navbar Right */
+.navbar-right {
+    display: flex;
     align-items: center;
-    gap: 40px ;
+    gap: 40px;
 }
-.navbar button{
+
+.navbar button {
     background: transparent;
     font-size: 16px;
     color: #49557e;
@@ -30,20 +40,25 @@
     cursor: pointer;
     transition: 0.3s;
 }
-.navbar button:hover{
+
+.navbar button:hover {
     background-color: #fff4f2;
 }
-.navbar .active{
+
+.navbar .active {
     padding-bottom: 2px;
-    border-bottom: 2px solid #49557e ;
+    border-bottom: 2px solid #49557e;
 }
-.navbar li{
+
+.navbar li {
     cursor: pointer;
 }
-.navbar-search-icon{
+
+.navbar-search-icon {
     position: relative;
 }
-.navbar-search-icon .dot{
+
+.navbar-search-icon .dot {
     position: absolute;
     min-width: 10px;
     min-height: 10px;
@@ -51,5 +66,90 @@
     border-radius: 5px;
     top: -8px;
     right: -8px;
+}
 
+/* Media Queries for Responsiveness */
+@media (max-width: 1050px) {
+    .navbar .logo {
+        width: 140px;
+    }
+
+    .navbar-menu {
+        gap: 20px;
+        font-size: 17px;
+    }
+
+    .navbar-right {
+        gap: 30px;
+    }
+
+    .navbar-right img {
+        width: 22px;
+    }
+
+    .navbar-right button {
+        padding: 8px 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar .logo {
+        width: 120px;
+    }
+
+    .navbar-menu {
+        gap: 15px;
+        font-size: 16px;
+    }
+
+    .navbar-right {
+        gap: 20px;
+    }
+
+    .navbar-right img {
+        width: 20px;
+    }
+
+    .navbar-right button {
+        padding: 7px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar-menu {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;  /* Add spacing between menu items */
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        padding: 10px; /* Add padding to the menu for better spacing */
+    }
+
+    .navbar-menu.open {
+        max-height: 300px; /* Adjust according to your needs */
+    }
+
+    .navbar-right {
+        gap: 20px; /* Adjusted gap for better spacing on mobile screens */
+        flex-direction: row; /* Ensure icons are displayed in a row */
+    }
+
+    .navbar-right img {
+        width: 18px; /* Adjust icon size for mobile */
+    }
+
+    .navbar-right button {
+        padding: 7px 15px;
+        font-size: 14px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
 }

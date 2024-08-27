@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import './Navbar.css'
-import { assets } from '../../assets/assets' 
+import { assets } from '../../assets/assets'
 import {Link} from 'react-router-dom';
+import { useContext } from 'react';
+import { Storecontext } from '../content/Storecontext';
 
 const Navbar = ({setShowLogin}) => {
     const [menu,setMenu] = useState("home");
+    const {getTotalAmount}=useContext(Storecontext)
   return (
     <div className='navbar'>
-      <img src = {assets.logo} alt='' className='logo'/>
+      <Link to='/'><img src = {assets.logo} alt='' className='logo'/></Link>
       <ul className="navbar-menu">
         <Link to='/'onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>home</Link>
         <a href='#explore-menu' onClick={()=>setMenu("menu")}className={menu==="menu"?"active":""}>menu</a>
@@ -17,8 +20,8 @@ const Navbar = ({setShowLogin}) => {
      <div className="navbar-right">
         <img src= {assets.search_icon} alt="" />
         <div className="navbar-search-icon">
-            <img src={assets.bag_icon} alt="" />
-            <div className="dot"></div>
+            <Link to='/cart'><img src={assets.bag_icon} alt="" /></Link>
+            <div className={getTotalAmount()===0?"":"dot"}></div>
         </div>
         <button onClick={()=>setShowLogin(true)}>Sign Up</button>
      </div>

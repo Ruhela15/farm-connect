@@ -37,7 +37,8 @@
 }
 
 .menu-item img {
-    width: 7.5vw;
+    height: 9vw;
+    width: 9vw;
     min-width: 80px;
     cursor: pointer;
     border-radius: 50%;

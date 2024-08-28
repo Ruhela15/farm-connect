@@ -5,10 +5,10 @@ import Fooditems from "../Fooditems/Fooditems";
 
 const FoodDisply = ({ category }) => {
   const { food_list } = useContext(Storecontext);
-  const [visibleItems, setVisibleItems] = useState(8); // Number of items to show initially
+  const [visibleItems, setVisibleItems] = useState(8);
 
   const handleViewMore = () => {
-    setVisibleItems(prev => prev + 8); // Load more items
+    setVisibleItems(prev => prev + 8);
   };
 
   const filteredItems = category === "All" 

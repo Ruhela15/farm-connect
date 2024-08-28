@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './PlaceOrder.css'
+import { Storecontext } from '../../components/content/Storecontext'
 
 const PlaceOrder = () => {
+  const {getTotalAmount}=useContext(Storecontext)
   return (
     <form className='place-order'>
       <div className="place-order-left">
@@ -23,20 +25,26 @@ const PlaceOrder = () => {
         <input type="text" placeholder='Phone' />
       </div>
       <div className='place-order-right'>
-      <div className="cart-total">
-        <h2>Cart Totals</h2>
-        <div>
-          <div className="cart-total-details">
-            <p>Subtotal</p>
-            <p>${getTotalCartAmount()}</p>
-          </div>
-          <hr />
-          <div className="cart-total-details">
-            <p>Delivery Fee</p>
-            <p>${2}</p>
+        <div className="cart-total">
+            <h2>Cart Totals</h2>
+            <div>
+              <div className="cart-total-details">
+                <p>Subtotal</p>
+                <p>${getTotalAmount()}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <p>Delivery Fee</p>
+                <p>${getTotalAmount()===0?0:2}</p>
+              </div>
+              <hr />
+              <div className="cart-total-details">
+                <b>Total</b>
+                <b>${getTotalAmount()+getTotalAmount()===0?0:2}</b>
+              </div>
+            <button  onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
           </div>
         </div>
-      </div>
       </div>
     </form>
   )

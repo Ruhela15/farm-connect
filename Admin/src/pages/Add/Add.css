@@ -15,7 +15,9 @@
     gap: 10px;
 }
 .add-img-upload img{
-    width: 120px;
+    width: 160px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 .add-product-name , .add-product-description{
     width: max(40%,280px);

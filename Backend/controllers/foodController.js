@@ -15,10 +15,10 @@ const addFood = async (req, res) => {
 
     try {
         await food.save();
-        res.json({ success: true, message: "Food Added" });
+        res.json({ success: true, message: "Product Added" });
     } catch (error) {
-        console.error("Error adding food:", error);
-        res.status(500).json({ success: false, message: "Error adding food" });
+        console.error("Error adding Product:", error);
+        res.status(500).json({ success: false, message: "Error adding Product" });
     }
 };
 
@@ -39,7 +39,7 @@ const removeFood = async(req , res) =>{
         fs.unlink(`uploads/${food.image}`,()=>{})
 
         await foodModel.findByIdAndDelete(req.body.id);
-        res.json({success:true , message:"Food Removed"})
+        res.json({success:true , message:"Product Removed"})
     } catch (error) {
         console.log("error");
         res.json({success:false , message:"error"})

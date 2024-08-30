@@ -3,7 +3,7 @@ import './Navbar.css'
 import { assets } from '../../assets/assets'
 import {Link} from 'react-router-dom';
 import { useContext } from 'react';
-import { Storecontext } from '../content/Storecontext';
+import { Storecontext } from '../context/Storecontext';
 
 const Navbar = ({setShowLogin}) => {
     const [menu,setMenu] = useState("home");

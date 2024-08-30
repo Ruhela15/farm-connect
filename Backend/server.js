@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import { ConnectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoutes.js";
+import cartRouter from "./routes/cartRoute.js";
+import { placeOrder } from "./controllers/orderController.js";
+import orderRouter from "./routes/orderRoute.js";
 
 const app = express();
 const port = 4000;
@@ -13,6 +16,9 @@ ConnectDB();
 
 app.use("/api/food", foodRouter);
 app.use("/images",express.static('uploads'))
+
+app.use("/api/cart",cartRouter)
+app.use("/api/order",orderRouter)
 
 app.get("/", (req, res) => {
   res.send("API Working");

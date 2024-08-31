@@ -55,7 +55,12 @@ const Storecontextprovider = (props) => {
       }
     }
     loadData();
-  }, []); // Empty dependency array to run only once on mount
+  })
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      settoken(localStorage.getItem("token"));
+    }
+  },[])
 
   const contextvalue = {
     food_list,

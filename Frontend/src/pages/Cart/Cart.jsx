@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import './Cart.css'
-import { Storecontext } from '../../components/context/Storecontext'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react';
+import './Cart.css';
+import { Storecontext } from '../../components/context/Storecontext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalAmount, url } = useContext(Storecontext);
+  const { cartItems, foodList, removeFromCart, getTotalAmount, url } = useContext(Storecontext); // Changed food_list to foodList
   const navigate = useNavigate();
 
   return (
@@ -20,11 +20,11 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item) => {
+        {foodList.map((item,index) => { // Changed food_list to foodList
           if (cartItems[item._id] > 0) {
             return (
               <div key={item._id} className='cart-items-title cart-items-item'>
-                <img src={url + "/images/" + item.image} alt={item.name} />
+                <img src={`${url}/images/${item.image}`} alt={item.name} />
                 <p>{item.name}</p>
                 <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>
@@ -61,6 +61,6 @@ const Cart = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Cart;

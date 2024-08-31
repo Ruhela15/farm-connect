@@ -4,16 +4,17 @@ import { Storecontext } from "../context/Storecontext";
 import Fooditems from "../Fooditems/Fooditems";
 
 const FoodDisplay = ({ category }) => {
-  const { food_list } = useContext(Storecontext);
+  const { foodList } = useContext(Storecontext);
   const [visibleItems, setVisibleItems] = useState(8);
 
   const handleViewMore = () => {
     setVisibleItems(prev => prev + 8);
   };
 
+  // Ensure foodList is defined and handle cases where it might not be
   const filteredItems = category === "All" 
-    ? food_list 
-    : food_list.filter(item => item.category === category);
+    ? (foodList || []) 
+    : (foodList || []).filter(item => item.category === category);
 
   return (
     <div className="food-display" id="food-display">

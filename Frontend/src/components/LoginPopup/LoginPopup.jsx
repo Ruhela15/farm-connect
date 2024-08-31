@@ -2,43 +2,38 @@ import React, { useContext, useState } from 'react';
 import './LoginPopup.css';
 import { assets } from '../../assets/assets';
 import { Storecontext } from '../context/Storecontext';
-import axios from "axios";
+import axios from 'axios';
 
 const LoginPopup = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Login");
-  const { url, settoken } = useContext(Storecontext);
+  const { url, setToken } = useContext(Storecontext);
 
-  const [data, setdata] = useState({
+  const [data, setData] = useState({
     name: "",
     email: "",
     password: ""
   });
 
-  const onChngehandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setdata(data => ({ ...data, [name]: value }));
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setData(prevData => ({ ...prevData, [name]: value }));
   };
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let newurl = url;
-    if (currState === "Login") {
-      newurl += "/api/user/login";
-    } else {
-      newurl += "/api/user/register";
-    }
+    const endpoint = currState === "Login" ? "/api/user/login" : "/api/user/register";
     try {
-      const response = await axios.post(newurl, data);
+      const response = await axios.post(url + endpoint, data);
       if (response.data.success) {
-        settoken(response.data.token);
-        localStorage.setItem("token", response.data.token);
+        const { token } = response.data;
+        setToken(token);
+        localStorage.setItem("token", token);
         setShowLogin(false);
       } else {
-        alert(response.data.message);
+        alert(response.data.message || "An error occurred.");
       }
     } catch (error) {
-      console.error("An error occurred during the request:", error);
+      console.error("An error occurred during the request:", error.response?.data || error.message);
       alert("Something went wrong. Please try again.");
     }
   };
@@ -52,12 +47,35 @@ const LoginPopup = ({ setShowLogin }) => {
         </div>
         <div className="login-popup-inputs">
           {currState === "Sign Up" && (
-            <input name='name' onChange={onChngehandler} value={data.name} type="text" placeholder="Your Name" required />
+            <input 
+              name='name' 
+              onChange={onChangeHandler} 
+              value={data.name} 
+              type="text" 
+              placeholder="Your Name" 
+              required 
+            />
           )}
-          <input name='email' onChange={onChngehandler} value={data.email} type="email" placeholder='Your Email' required />
-          <input name='password' onChange={onChngehandler} value={data.password} type="password" placeholder='Password' required />
+          <input 
+            name='email' 
+            onChange={onChangeHandler} 
+            value={data.email} 
+            type="email" 
+            placeholder='Your Email' 
+            required 
+          />
+          <input 
+            name='password' 
+            onChange={onChangeHandler} 
+            value={data.password} 
+            type="password" 
+            placeholder='Password' 
+            required 
+          />
         </div>
-        <button type='submit'>{currState === "Sign Up" ? "Create Account" : "Login"}</button>
+        <button type='submit'>
+          {currState === "Sign Up" ? "Create Account" : "Login"}
+        </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
           <p>I agree to the terms of use & privacy policy</p>

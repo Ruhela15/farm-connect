@@ -7,13 +7,13 @@ import { Storecontext } from '../context/Storecontext';
 
 const Navbar = ({setShowLogin}) => {
     const [menu,setMenu] = useState("home");
-    const {getTotalAmount , token , settoken}=useContext(Storecontext)
+    const {getTotalAmount , token , setToken}=useContext(Storecontext)
 
-    const naviagte = useNavigate();
+    const navigate = useNavigate();
     const logout = () =>{
       localStorage.removeItem("token");
-      settoken("");
-      naviagte("/")
+      setToken("");
+      navigate("/")
     }
   return (
     <div className='navbar'>

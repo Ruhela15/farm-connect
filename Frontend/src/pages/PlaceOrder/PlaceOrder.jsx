@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
-  const { getTotalAmount, token, food_list, cartItems, url } = useContext(Storecontext);
+  const { getTotalAmount, token, foodList, cartItems, url } = useContext(Storecontext);
   const navigate = useNavigate(); // Initialize navigate
 
   const [data, setData] = useState({
@@ -20,39 +20,67 @@ const PlaceOrder = () => {
     phone: "",
   });
 
+  const [paymentMethod, setPaymentMethod] = useState("stripe"); // Added state for payment method
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData(data => ({ ...data, [name]: value }));
   };
 
+  const handlePaymentMethodChange = (event) => {
+    setPaymentMethod(event.target.value);
+  };
+
   const placeOrder = async (event) => {
     event.preventDefault();
-    let orderItems = [];
-    food_list.map((item) => {
-      if (cartItems[item._id] > 0) {
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItems[item._id];
-        orderItems.push(itemInfo);
-      }
-    });
+    let orderItems = foodList
+      .filter(item => cartItems[item._id] > 0)
+      .map(item => ({ ...item, quantity: cartItems[item._id] }));
+
     let orderData = {
       address: data,
       items: orderItems,
       amount: getTotalAmount() + 2,
+      paymentMethod: paymentMethod, // Include payment method in the order data
     };
+
     try {
-      let response = await axios.post(`${url}/api/order/place`, orderData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (response.data.success) {
-        const { session_url } = response.data;
-        window.location.replace(session_url);
-      } else {
-        alert("Error");
+      let response;
+      if (paymentMethod === "stripe") {
+        response = await axios.post(
+          `${url}/api/order/placeorder`,
+          orderData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        console.log("Backend Response:", response.data);
+
+        if (response.data.success) {
+          const { success_url } = response.data;
+          console.log("Redirecting to:", success_url);
+          window.location.replace(success_url);
+        } else {
+          alert("Payment Failed!");
+        }
+      } else if (paymentMethod === "cod") {
+        response = await axios.post(
+          `${url}/api/order/placeorder/cod`,
+          orderData,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        console.log("Backend Response:", response.data);
+
+        if (response.data.success) {
+          alert("Order placed successfully. Thank you for choosing Cash on Delivery!");
+          navigate("/"); // Redirect to home or order confirmation page
+        } else {
+          alert("Error placing order!");
+        }
       }
     } catch (error) {
-      console.error('Error placing order:', error);
+      console.error('Error placing order:', error.response ? error.response.data : error);
       alert("Error placing order");
     }
   };
@@ -94,6 +122,28 @@ const PlaceOrder = () => {
             <div className="cart-total-details">
               <b>Total</b>
               <b>${getTotalAmount() + (getTotalAmount() === 0 ? 0 : 2)}</b>
+            </div>
+            <div className="payment-method">
+              <label>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="stripe"
+                  checked={paymentMethod === "stripe"}
+                  onChange={handlePaymentMethodChange}
+                />
+                Online Payment (Stripe)
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  value="cod"
+                  checked={paymentMethod === "cod"}
+                  onChange={handlePaymentMethodChange}
+                />
+                Cash on Delivery
+              </label>
             </div>
             <button type='submit'>PROCEED TO CHECKOUT</button>
           </div>

@@ -1,63 +1,61 @@
 import { createContext, useEffect, useState } from "react";
-import axios from 'axios'
+import axios from 'axios';
 
 export const Storecontext = createContext(null);
 
 const Storecontextprovider = (props) => {
   const [cartItems, setCartItems] = useState({});
-<<<<<<< HEAD:Frontend/src/components/context/Storecontext.jsx
-  const [food_list,setFoodList] = useState([])
-=======
-  
-  const url = "http://localhost:4000"
-  const [token , settoken] = useState("")
+  const [food_list, setFoodList] = useState([]);
+  const url = "http://localhost:4000";
+  const [token, settoken] = useState("");
 
->>>>>>> e918f9ce7dc57083903bffc554d0a2d955475728:Frontend/src/components/content/Storecontext.jsx
   const addToCart = (itemId) => {
-    if (!cartItems[itemId]) {
-      setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
-    } else {
-      setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    }
+    setCartItems((prev) => ({
+      ...prev,
+      [itemId]: (prev[itemId] || 0) + 1
+    }));
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItems((prev) => {
+      if (prev[itemId] > 1) {
+        return { ...prev, [itemId]: prev[itemId] - 1 };
+      } else {
+        const { [itemId]: _, ...rest } = prev;
+        return rest;
+      }
+    });
   };
 
   const getTotalAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = food_list.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
+    return Object.entries(cartItems).reduce((total, [item, quantity]) => {
+      if (quantity > 0) {
+        const itemInfo = food_list.find((product) => product._id === item);
+        return total + (itemInfo ? itemInfo.price * quantity : 0);
       }
+      return total;
+    }, 0);
+  };
+
+  const fetchFoodList = async () => {
+    try {
+      const response = await axios.get(`${url}/api/food/list`);
+      setFoodList(response.data.data);
+    } catch (error) {
+      console.error("Failed to fetch food list:", error);
     }
-    return totalAmount;
-  }
+  };
 
-<<<<<<< HEAD:Frontend/src/components/context/Storecontext.jsx
-  const fetchFoodList = async() => {
-    const response = await axios.get(url + "/api/food/list");
-    setFoodList(response.data.data)
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     async function loadData() {
-      await fetchFoodList()
-      if(localStorage.getItem("token")){
-        setToken(localStorage.getItem("token"));
+      await fetchFoodList();
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        settoken(storedToken);
       }
     }
     loadData();
-  })
-=======
-  useEffect(()=>{
-    if(localStorage.getItem("token")){
-      settoken(localStorage.getItem("token"));
-    }
-  },[])
->>>>>>> e918f9ce7dc57083903bffc554d0a2d955475728:Frontend/src/components/content/Storecontext.jsx
+  }, []); // Empty dependency array to run only once on mount
 
   const contextvalue = {
     food_list,
@@ -70,6 +68,7 @@ const Storecontextprovider = (props) => {
     token,
     settoken
   };
+
   return (
     <Storecontext.Provider value={contextvalue}>
       {props.children}

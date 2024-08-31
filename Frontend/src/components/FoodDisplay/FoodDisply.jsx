@@ -3,7 +3,7 @@ import "./FoodDisplay.css";
 import { Storecontext } from "../context/Storecontext";
 import Fooditems from "../Fooditems/Fooditems";
 
-const FoodDisply = ({ category }) => {
+const FoodDisplay = ({ category }) => {
   const { food_list } = useContext(Storecontext);
   const [visibleItems, setVisibleItems] = useState(8);
 
@@ -19,14 +19,15 @@ const FoodDisply = ({ category }) => {
     <div className="food-display" id="food-display">
       <h2>Top Listed Items Near</h2>
       <div className="food-display-list">
-        {filteredItems.slice(0, visibleItems).map((item, index) => (
+        {filteredItems.slice(0, visibleItems).map(item => (
           <Fooditems
-            key={index}
+            key={item._id}
             id={item._id}
             name={item.name}
             description={item.description}
             price={item.price}
             image={item.image}
+            url={item.url} // Ensure `url` is being passed if needed
           />
         ))}
       </div>
@@ -39,4 +40,4 @@ const FoodDisply = ({ category }) => {
   );
 };
 
-export default FoodDisply;
+export default FoodDisplay;
